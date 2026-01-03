@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/03 18:35:55 by ghenriqu          #+#    #+#             */
-/*   Updated: 2026/01/03 20:17:51 by ghenriqu         ###   ########.fr       */
+/*   Created: 2026/01/03 19:33:25 by ghenriqu          #+#    #+#             */
+/*   Updated: 2026/01/03 20:15:09 by ghenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#ifndef UTILS_HPP
+# define UTILS_HPP
 
-int	main()
-{
-	std::string	command;
-	PhoneBook	pb;
+# include <iostream>
+# include <sstream>
+# include <string>
+# include <cctype>
 
-	PhoneBook.init();
-	while (true)
-	{
-		PhoneBook.message_prompt();
-		if (std::getline(std::cin, command))
-		{
-			if (!command.compare("EXIT"))
-				break ;
-			if (!command.compare("ADD"))
-				PhoneBook.add();
-			if (!command.compare("SEARCH"))
-				PhoneBook.search();
-		}
-		else
-			break ;
-	}
-	return 0;
-}
+bool		all_digits(const std::string &str);
+void		handle_whitespaces(std::string &command);
+std::string	truncate(const std::string &str);
+
+#endif

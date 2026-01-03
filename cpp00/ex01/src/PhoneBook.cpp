@@ -1,37 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/03 18:35:55 by ghenriqu          #+#    #+#             */
-/*   Updated: 2026/01/03 20:17:51 by ghenriqu         ###   ########.fr       */
+/*   Created: 2026/01/03 20:15:39 by ghenriqu          #+#    #+#             */
+/*   Updated: 2026/01/03 20:15:40 by ghenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-
-int	main()
-{
-	std::string	command;
-	PhoneBook	pb;
-
-	PhoneBook.init();
-	while (true)
-	{
-		PhoneBook.message_prompt();
-		if (std::getline(std::cin, command))
-		{
-			if (!command.compare("EXIT"))
-				break ;
-			if (!command.compare("ADD"))
-				PhoneBook.add();
-			if (!command.compare("SEARCH"))
-				PhoneBook.search();
-		}
-		else
-			break ;
-	}
-	return 0;
-}
