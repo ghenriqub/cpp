@@ -12,7 +12,7 @@
 
 # program name
 NAME = phonebook
-SRC = 
+SRC = src/Account.cpp
 
 # compiling flags:
 CC = c++
