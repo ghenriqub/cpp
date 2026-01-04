@@ -6,13 +6,15 @@
 #    By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/03 15:32:12 by ghenriqu          #+#    #+#              #
-#    Updated: 2026/01/03 18:29:57 by ghenriqu         ###   ########.fr        #
+#    Updated: 2026/01/04 14:16:23 by ghenriqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # program name
 NAME = phonebook
-SRC = 
+SRC = 	src/main.cpp \
+		src/PhoneBook.cpp \
+		src/Contact.cpp
 
 # compiling flags:
 CC = c++
