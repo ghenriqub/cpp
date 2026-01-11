@@ -6,17 +6,16 @@
 #    By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 17:05:28 by ghenriqu          #+#    #+#              #
-#    Updated: 2026/01/11 18:15:38 by ghenriqu         ###   ########.fr        #
+#    Updated: 2026/01/11 19:05:51 by ghenriqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # program name
-NAME = BraiiiiiiinnnzzzZ
+NAME = ZombieHorde
 
 SRC =	main.cpp \
 		Zombie.cpp \
-		NewZombie.cpp \
-		RandomChump.cpp
+		ZombieHorde.cpp
 
 HEADERS =	Zombie.hpp
 
