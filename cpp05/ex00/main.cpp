@@ -1,0 +1,67 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ghenriqu <ghenriqu@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/15 14:14:32 by ghenriqu          #+#    #+#             */
+/*   Updated: 2026/08/15 14:27:50 by ghenriqu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Bureaucrat.hpp"
+
+int	main(void) {
+	std::cout << std::endl << YELLOW << "------ Creating a bureaucrat with grade 1 ------" << RESET << std::endl;
+	try {
+		Bureaucrat b1("John", 1);
+		std::cout << b1;
+		std::cout << "Decrementing grade..." << std::endl;
+		b1.decrementGrade();
+		std::cout << b1;
+		std::cout << "Incrementing grade..." << std::endl;
+		b1.incrementGrade();
+		std::cout << b1;
+		std::cout << "Incrementing grade again..." << std::endl;
+		b1.incrementGrade();
+		std::cout << b1;
+	}
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << std::endl << YELLOW << "------ Creating a bureaucrat with grade 150 ------" << RESET << std::endl;
+	try {
+		Bureaucrat b2("John", 150);
+		std::cout << b2;
+		std::cout << "Incrementing grade..." << std::endl;
+		b2.incrementGrade();
+		std::cout << b2;
+		std::cout << "Decrementing grade..." << std::endl;
+		b2.decrementGrade();
+		std::cout << b2;
+		std::cout << "Decrementing grade again..." << std::endl;
+		b2.decrementGrade();
+		std::cout << b2;
+	}
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << std::endl << YELLOW << "------ Creating a bureaucrat with grade 0 ------" << RESET << std::endl;
+	try {
+		Bureaucrat b3("John", 0);
+		std::cout << b3;
+	}
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << std::endl << YELLOW << "------ Creating a bureaucrat with grade 151 ------" << RESET << std::endl;
+	try {
+		Bureaucrat b4("John", 151);
+		std::cout << b4;
+	}
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	return (0);
+}
