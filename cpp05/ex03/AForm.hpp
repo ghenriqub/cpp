@@ -14,6 +14,8 @@
 # define AFORM_HPP
 
 # include <iostream>
+# include <string>
+# include <exception>
 
 class Bureaucrat;
 
@@ -38,7 +40,7 @@ class AForm
         bool		getSigned(void) const;
         int			getGradeToSign(void) const;
         int			getGradeToExecute(void) const;
-        void		beSigned(Bureaucrat &bureaucrat);
+        void		beSigned(const Bureaucrat &bureaucrat);
         virtual void		execute(Bureaucrat const &executor) const = 0;
         class GradeTooHighException : public std::exception {
             public:

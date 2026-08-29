@@ -27,17 +27,22 @@ SRC 		= main.cpp \
 			PresidentialPardonForm.cpp
 
 OBJ 		= $(addprefix $(OBJ_PATH), $(notdir $(SRC:.cpp=.o)))
+DEP 		= $(OBJ:.o=.d)
 
 $(OBJ_PATH)%.o: %.cpp
-			@printf "\n$(CY)Generating object...$(RC)\n"
-			mkdir -p $(OBJ_PATH)
-			$(CC) $(CFLAGS) -c $< -o $@
-			@printf "\n$(GR)Object ready!$(RC)\n"
+				@printf "\n$(CY)Generating object...$(RC)\n"
+				@mkdir -p $(OBJ_PATH)
+				$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+				@printf "\n$(GR)Object ready!$(RC)\n"
 
 $(NAME): 	$(OBJ)
-			@printf "\n$(CY)Generating executable...$(RC)\n"
-			$(CC) $(CFLAGS) $(OBJ) -I $(OBJ_PATH) -o $(NAME)
-			@printf "\n$(GR)Done!$(RC)\n"
+				@printf "\n$(CY)Generating executable...$(RC)\n"
+				$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+				@printf "\n$(GR)Done!$(RC)\n"
+
+-include $(DEP)
+
+.PHONY:		all clean fclean re leak
 
 all:		$(NAME)
 

@@ -14,11 +14,13 @@
 # define FORM_HPP
 
 # include <iostream>
+# include <string>
+# include <exception>
 
-# define RESET		"\e[m"
-# define RED		"\e[31m"
-# define GREEN		"\e[32m"
-# define YELLOW		"\e[33m"
+# define RESET		"\033[m"
+# define RED		"\033[31m"
+# define GREEN		"\033[32m"
+# define YELLOW		"\033[33m"
 
 class Bureaucrat;
 
@@ -44,14 +46,16 @@ class Form
         bool		getSigned(void) const;
         int			getGradeToSign(void) const;
         int			getGradeToExecute(void) const;
-        void		beSigned(Bureaucrat &bureaucrat);	
+        void		beSigned(const Bureaucrat &bureaucrat);	
 
         class GradeTooHighException : public std::exception {
-            virtual const char *what() const throw();
+            public:
+                virtual const char *what() const throw();
         };
 
         class GradeTooLowException : public std::exception {
-            virtual const char *what() const throw();
+            public:
+                virtual const char *what() const throw();
         };
 };
 

@@ -13,9 +13,10 @@
 #include "Bureaucrat.hpp"
 
 // ORTHODOX CANNONICAL FORM
-Bureaucrat::Bureaucrat(void) {
+Bureaucrat::Bureaucrat(void) : _name("default"), _grade(_min_grade) {
 	return ;
 }
+
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
 	if (grade < _max_grade)
 		throw Bureaucrat::GradeTooHighException();
@@ -25,10 +26,12 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
 		_grade = grade;
 	return ;
 }
+
 Bureaucrat::Bureaucrat(const Bureaucrat &source) : _name(source._name) {
 	*this = source;
 	return ;
 }
+
 Bureaucrat::~Bureaucrat(void) {
 	return ;
 }
@@ -67,11 +70,11 @@ void		Bureaucrat::decrementGrade(void) {
 
 // EXCEPTION CLASSES
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
-	return (RED "Grade too high!" RESET);
+	return ("Grade too high!");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
-	return (RED "Grade too low!" RESET);
+	return ("Grade too low!");
 }
 
 // STREAM OPERATOR OVERLOAD

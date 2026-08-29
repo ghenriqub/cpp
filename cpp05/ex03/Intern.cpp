@@ -23,6 +23,19 @@ Intern::Intern(void) {
     return ;
 }
 
+Intern::Intern(const Intern &source) {
+	*this = source;
+	return ;
+}
+
+Intern  &Intern::operator=(const Intern &source) {
+    if (this != &source) {
+        for (int i = 0; i < 3; i++)
+            _form_types[i] = source._form_types[i];
+    }
+    return (*this);
+}
+
 Intern::~Intern(void) {
     return ;
 }
@@ -49,13 +62,12 @@ AForm* Intern::makeForm(std::string name, std::string target)
             break;
         default:
             throw Intern::FormNotFoundException();
-            return (NULL);
     }
     std::cout << YELLOW << "Intern" << RESET << " creates " << GREEN << form->getName() << RESET << std::endl;
     return (form);
 }
 
-// STREAM OPERATOR OVERLOAD
+// EXCEPTION CLASS
 const char* Intern::FormNotFoundException::what() const throw() {
-    return (RED "Type of form specified cannot be created. Please, try creating a different form." RESET);
+    return ("Type of form specified cannot be created. Please, try creating a different form.");
 }

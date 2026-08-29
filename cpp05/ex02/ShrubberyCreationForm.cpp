@@ -16,27 +16,32 @@
 ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("default", 1, 1), _target("default") {
 	return ;
 }
+
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target) {
 	return ;
 }
+
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &source) : AForm(source), _target(source._target) {
 	*this = source;
 	return ;
 }
+
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 	return ;
 }
 
-ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &source) {
-	if (this == &source)
-		return (*this);
-	_target = source._target;
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &source) {
+	if (this != &source) {
+		AForm::operator=(source);
+		_target = source._target;
+	}
 	return (*this);
 }
 
 std::string ShrubberyCreationForm::getTarget(void) const {
 	return (_target);
 }
+
 void		ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 	if (!this->getSigned())
 		throw AForm::FormNotSignedException();

@@ -17,10 +17,10 @@
 # include <string>
 # include <exception>
 
-# define RESET		"\e[m"
-# define RED		"\e[31m"
-# define GREEN		"\e[32m"
-# define YELLOW		"\e[33m"
+# define RESET		"\033[m"
+# define RED		"\033[31m"
+# define GREEN		"\033[32m"
+# define YELLOW		"\033[33m"
 
 class Form;
 

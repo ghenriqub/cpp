@@ -31,9 +31,10 @@ RobotomyRequestForm::~RobotomyRequestForm(void) {
 }
 
 RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &source) {
-	if (this == &source)
-		return (*this);
-	_target = source._target;
+	if (this != &source) {
+		AForm::operator=(source);
+		_target = source._target;
+	}
 	return (*this);
 }
 
@@ -46,7 +47,11 @@ void		RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 		throw FormNotSignedException();
 	if (executor.getGrade() > getGradeToExecute())
 		throw GradeTooLowException();
-	std::srand(static_cast<unsigned int>(std::time(NULL)));
+	static bool	seeded = false;
+	if (!seeded) {
+		std::srand(static_cast<unsigned int>(std::time(NULL)));
+		seeded = true;
+	}
 	std::cout << "* drilling noises *" << std::endl;
 	if (std::rand() % 2)
 		std::cout << _target << " has been robotomized successfully." << std::endl;

@@ -14,22 +14,23 @@
 #include "Bureaucrat.hpp"
 
 // ORTHODOX CANNONICAL FORM
-Form::Form(void) : _name("default"), _grade_to_sign(150), _grade_to_execute(150) {
+Form::Form(void) : _name("default"), _signed(false), _grade_to_sign(150), _grade_to_execute(150) {
 	return ;
 }
-Form::Form(std::string name, int grade_to_sign, int grade_to_execute) : _name(name), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute) {
+
+Form::Form(std::string name, int grade_to_sign, int grade_to_execute) : _name(name), _signed(false), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute) {
 	if (grade_to_sign < _max_grade || grade_to_execute < _max_grade)
 		throw Form::GradeTooHighException();
-	else if (grade_to_sign > _min_grade || grade_to_execute > _min_grade)
+	if (grade_to_sign > _min_grade || grade_to_execute > _min_grade)
 		throw Form::GradeTooLowException();
-	else
-		_signed = false;
 	return ;
 }
+
 Form::Form(const Form &source) : _name(source._name), _grade_to_sign(source._grade_to_sign), _grade_to_execute(source._grade_to_execute) {
 	*this = source;
 	return ;
 }
+
 Form::~Form(void) {
 	return ;
 }
@@ -57,7 +58,7 @@ int			Form::getGradeToExecute(void) const {
 }
 
 // MEMBER FUNCTIONS
-void		Form::beSigned(Bureaucrat &bureaucrat) {
+void		Form::beSigned(const Bureaucrat &bureaucrat) {
 	if (bureaucrat.getGrade() > _grade_to_sign)
 		throw Form::GradeTooLowException();
 	else
@@ -67,14 +68,19 @@ void		Form::beSigned(Bureaucrat &bureaucrat) {
 
 // EXCEPTION CLASSES
 const char *Form::GradeTooHighException::what() const throw() {
-	return (RED "Grade too high!" RESET);
+	return ("Grade too high!");
 }
 const char *Form::GradeTooLowException::what() const throw() {
-	return (RED "Grade too low!" RESET);
+	return ("Grade too low!");
 }
 
 // STREAM OPERATOR OVERLOAD
 std::ostream	&operator<<(std::ostream &out, const Form &form) {
-	out << GREEN << form.getName() << RESET << ", form grade to sign " << YELLOW << form.getGradeToSign() << RESET << ", form grade to execute " << YELLOW << form.getGradeToExecute() << RESET << ".";
+	out << GREEN << form.getName() << RESET << ", ";
+	if (form.getSigned())
+		out << "signed";
+	else
+		out << "not signed";
+	out << ", form grade to sign " << YELLOW << form.getGradeToSign() << RESET << ", form grade to execute " << YELLOW << form.getGradeToExecute() << RESET << ".";
 	return (out);
 }

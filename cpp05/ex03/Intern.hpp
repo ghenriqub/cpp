@@ -17,28 +17,34 @@
 # include <string>
 # include "AForm.hpp"
 
-# define RESET		"\e[m"
-# define RED		"\e[31m"
-# define GREEN		"\e[32m"
-# define YELLOW		"\e[33m"
-
-enum FormType
-{
-    ROBOTOMY_REQUEST,
-    PRESIDENTIAL_PARDON,
-    SHRUBBERY_CREATION
-};
+# define RESET		"\033[m"
+# define RED		"\033[31m"
+# define GREEN		"\033[32m"
+# define YELLOW		"\033[33m"
 
 class Intern
 {
     private:
+        enum FormType
+        {
+            ROBOTOMY_REQUEST,
+            PRESIDENTIAL_PARDON,
+            SHRUBBERY_CREATION
+        };
+
         std::string   _form_types[3];
     public:
-        Intern();
-        ~Intern();
-        AForm* makeForm(std::string name, std::string target);
+        Intern(void);
+        Intern(const Intern &source);
+        ~Intern(void);
+
+        Intern  &operator=(const Intern &source);
+
+        AForm*  makeForm(std::string name, std::string target);
+
         class FormNotFoundException : public std::exception {
-            virtual const char* what() const throw();
+            public:
+                virtual const char* what() const throw();
         };
 };
 

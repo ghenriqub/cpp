@@ -58,7 +58,7 @@ int			AForm::getGradeToExecute(void) const {
 }
 
 // MEMBER FUNCTIONS
-void		AForm::beSigned(Bureaucrat &bureaucrat) {
+void		AForm::beSigned(const Bureaucrat &bureaucrat) {
 	if (bureaucrat.getGrade() > _gradeToSign)
 		throw AForm::GradeTooLowException();
 	else
@@ -68,15 +68,15 @@ void		AForm::beSigned(Bureaucrat &bureaucrat) {
 
 // EXCEPTION CLASSES
 const char *AForm::GradeTooHighException::what() const throw() {
-	return (RED "Grade too high!" RESET);
+	return ("Grade too high!");
 }
 
 const char *AForm::GradeTooLowException::what() const throw() {
-	return (RED "Grade too low!" RESET);
+	return ("Grade too low!");
 }
 
 const char *AForm::FormNotSignedException::what() const throw() {
-	return (RED "Form not signed!" RESET);
+	return ("Form not signed!");
 }
 
 // STREAM OPERATOR OVERLOAD
